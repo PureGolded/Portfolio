@@ -244,30 +244,48 @@
                         {% for tech in featured_project.technologies %}
                         <span class="tech-tag">{{ tech }}</span>
                         {% endfor %}
-                    </div>
-                    <div class="project-links">                        {% for link in featured_project.links %}
+                    </div>                    <div class="project-links">                        {% for link in featured_project.links %}
                             {% if link.type == 'github' %}
-                                <a href="{{ link.url }}" target="_blank" class="btn btn-icon" rel="noopener" title="{{ link.label }}">
-                                    <i class="fab fa-github"></i>
-                                </a>
+                                {% if link.available == false %}
+                                    <span class="btn btn-disabled" title="Not Available Yet">
+                                        <i class="fab fa-github"></i>
+                                    </span>
+                                {% else %}
+                                    <a href="{{ link.url }}" target="_blank" class="btn btn-icon" rel="noopener" title="{{ link.label }}">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                {% endif %}
                             {% elif link.type == 'discord' %}
-                                <a href="{{ link.url }}" target="_blank" class="btn btn-icon" rel="noopener" title="{{ link.label }}">
-                                    <i class="fab fa-discord"></i>
-                                </a>
+                                {% if link.available == false %}
+                                    <span class="btn btn-disabled" title="Not Available Yet">
+                                        <i class="fab fa-discord"></i>
+                                    </span>
+                                {% else %}
+                                    <a href="{{ link.url }}" target="_blank" class="btn btn-icon" rel="noopener" title="{{ link.label }}">
+                                        <i class="fab fa-discord"></i>
+                                    </a>
+                                {% endif %}
                             {% elif link.type == 'youtube' %}
-                                <a href="{{ link.url }}" target="_blank" class="btn btn-icon" rel="noopener" title="{{ link.label }}">
-                                    <i class="fab fa-youtube"></i>
-                                </a>                                {% elif link.type == 'website' %}
-                                    {% if link.available == false %}
-                                        <span class="btn btn-disabled" title="Not Available Yet">
-                                            <i class="fas fa-globe"></i>
-                                        </span>
-                                        <small class="availability-note">← Not Available Yet</small>
-                                    {% else %}
-                                        <a href="{{ link.url }}" target="_blank" class="btn btn-icon" rel="noopener" title="{{ link.label }}">
-                                            <i class="fas fa-globe"></i>
-                                        </a>
-                                    {% endif %}
+                                {% if link.available == false %}
+                                    <span class="btn btn-disabled" title="Not Available Yet">
+                                        <i class="fab fa-youtube"></i>
+                                    </span>
+                                {% else %}
+                                    <a href="{{ link.url }}" target="_blank" class="btn btn-icon" rel="noopener" title="{{ link.label }}">
+                                        <i class="fab fa-youtube"></i>
+                                    </a>
+                                {% endif %}
+                            {% elif link.type == 'website' %}
+                                {% if link.available == false %}
+                                    <span class="btn btn-disabled" title="Not Available Yet">
+                                        <i class="fas fa-globe"></i>
+                                    </span>
+                                    <small class="availability-note">← Not Available Yet</small>
+                                {% else %}
+                                    <a href="{{ link.url }}" target="_blank" class="btn btn-icon" rel="noopener" title="{{ link.label }}">
+                                        <i class="fas fa-globe"></i>
+                                    </a>
+                                {% endif %}
                             {% endif %}
                         {% endfor %}
                     </div>
@@ -311,23 +329,47 @@
                             <span class="tech-tag">{{ tech }}</span>
                             {% endfor %}
                         </div>
-                        {% endif %}
-                        <div class="project-links">                            {% for link in project.links %}
+                        {% endif %}                        <div class="project-links">                            {% for link in project.links %}
                                 {% if link.type == 'github' %}
-                                    <a href="{{ link.url }}" target="_blank" class="btn btn-icon" rel="noopener" title="{{ link.label }}">
-                                        <i class="fab fa-github"></i>
-                                    </a>
+                                    {% if link.available == false %}
+                                        <span class="btn btn-disabled" title="Not Available Yet">
+                                            <i class="fab fa-github"></i>
+                                        </span>
+                                    {% else %}
+                                        <a href="{{ link.url }}" target="_blank" class="btn btn-icon" rel="noopener" title="{{ link.label }}">
+                                            <i class="fab fa-github"></i>
+                                        </a>
+                                    {% endif %}
                                 {% elif link.type == 'discord' %}
-                                    <a href="{{ link.url }}" target="_blank" class="btn btn-icon" rel="noopener" title="{{ link.label }}">
-                                        <i class="fab fa-discord"></i>
-                                    </a>
+                                    {% if link.available == false %}
+                                        <span class="btn btn-disabled" title="Not Available Yet">
+                                            <i class="fab fa-discord"></i>
+                                        </span>
+                                    {% else %}
+                                        <a href="{{ link.url }}" target="_blank" class="btn btn-icon" rel="noopener" title="{{ link.label }}">
+                                            <i class="fab fa-discord"></i>
+                                        </a>
+                                    {% endif %}
                                 {% elif link.type == 'youtube' %}
-                                    <a href="{{ link.url }}" target="_blank" class="btn btn-icon" rel="noopener" title="{{ link.label }}">
-                                        <i class="fab fa-youtube"></i>
-                                    </a>                                {% elif link.type == 'website' %}
-                                    <a href="{{ link.url }}" target="_blank" class="btn btn-icon" rel="noopener" title="{{ link.label }}">
-                                        <i class="fas fa-globe"></i>
-                                    </a>
+                                    {% if link.available == false %}
+                                        <span class="btn btn-disabled" title="Not Available Yet">
+                                            <i class="fab fa-youtube"></i>
+                                        </span>
+                                    {% else %}
+                                        <a href="{{ link.url }}" target="_blank" class="btn btn-icon" rel="noopener" title="{{ link.label }}">
+                                            <i class="fab fa-youtube"></i>
+                                        </a>
+                                    {% endif %}
+                                {% elif link.type == 'website' %}
+                                    {% if link.available == false %}
+                                        <span class="btn btn-disabled" title="Not Available Yet">
+                                            <i class="fas fa-globe"></i>
+                                        </span>
+                                    {% else %}
+                                        <a href="{{ link.url }}" target="_blank" class="btn btn-icon" rel="noopener" title="{{ link.label }}">
+                                            <i class="fas fa-globe"></i>
+                                        </a>
+                                    {% endif %}
                                 {% endif %}
                             {% endfor %}
                         </div>

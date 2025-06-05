@@ -18,48 +18,15 @@
       ]
     },
     {
-      "id": "lunox-discord-bot",
-      "title": "Lunox Discord Bot",
-      "description": "A comprehensive Discord bot built with Python, featuring community management tools, entertainment commands, and database integration for persistent data storage.",
-      "technologies": ["Python", "Discord.py", "SQLite", "Async Programming"],
-      "featured": false,
-      "links": [
-        {
-          "type": "github",
-          "url": "https://github.com/PureGolded/Lunox",
-          "label": "View Code"
-        },
-        {
-          "type": "discord",
-          "url": "https://discord.gg/haicome",
-          "label": "Join Server"
-        }
-      ]
-    },
-    {
-      "id": "minecraft-server-network",
-      "title": "Minecraft Server Network",
-      "description": "Custom Java plugins developed using Spigot API to enhance multiplayer gameplay. Features include custom game mechanics, player management, and database integration.",
-      "technologies": ["Java", "Spigot API", "MySQL", "Plugin Development"],
-      "featured": false,
-      "links": [
-        {
-          "type": "github",
-          "url": "https://github.com/PureGolded/minecraft-plugins",
-          "label": "View Plugins"
-        }
-      ]
-    },
-    {
       "id": "portfolio-website",
-      "title": "Portfolio Website",
+      "title": "This Website",
       "description": "This responsive portfolio website built with Flask, featuring modern dark theme design, smooth animations, and GSAP-powered scroll effects.",
       "technologies": ["Python Flask", "HTML/CSS/JS", "SQLAlchemy", "GSAP", "Responsive Design"],
       "featured": false,
       "links": [
         {
           "type": "github",
-          "url": "https://github.com/PureGolded/portfolio",
+          "url": "https://github.com/PureGolded/Portfolio",
           "label": "View Source"
         },
         {
@@ -67,7 +34,62 @@
           "url": "https://portfolio.haicome.net",
           "label": "Live Site"
         }
-      ]    },
+      ]
+    },
+    {
+      "id": "echo-web",
+      "title": "Echo E-Shop",
+      "description": "A E-Shop website made with Flask, for a client in parity with Czech Bowhunting Website. It features administration panel, product management, and email notifications.",
+      "technologies": ["Python", "Flask", "Web Development", "HTML/CSS/JS", "Email Integration"],
+      "featured": false,
+      "links": [
+        {
+          "type": "github",
+          "url": "https://github.com/PureGolded/echo-web",
+          "label": "View Code"
+        },
+        {
+          "type": "website",
+          "url": "https://forest-profi-technik.cz",
+          "label": "Live Site",
+          "available": false
+        }
+      ]
+    },
+    {
+      "id": "czbow-web",
+      "title": "Czech Bowhunting E-Shop",
+      "description": "A E-Shop website made with Flask, for a client in parity with Echo E-Shop Website. It features administration panel, product management, and email notifications.",
+      "technologies": ["Python", "Flask", "Web Development", "HTML/CSS/JS", "Email Integration"],
+      "featured": false,
+      "links": [
+        {
+          "type": "github",
+          "url": "https://github.com/PureGolded/czbow-web",
+          "label": "View Code"
+        },
+        {
+          "type": "website",
+          "url": "https://czech-bowhunting.cz",
+          "label": "Live Site",
+          "available": false
+        }
+      ]
+    },
+    {
+      "id": "valorstone-network",
+      "title": "Minecraft ValorStone Community",
+      "description": "A Minecraft community project featuring a custom Spigot server with unique plugins, a Discord server for community interaction, and a website for information and updates, with donation options.",
+      "technologies": ["Java", "Spigot API", "MySQL", "Plugin Development", "Community Management", "Website Management"],
+      "featured": false,
+      "links": [
+        {
+          "type": "discord",
+          "url": "https://discord.gg/7kZRQ3v79Q",
+          "label": "Join Discord Community"
+        }
+      ]
+    },
     {
       "id": "home-server-infrastructure",
       "title": "Home Server Infrastructure", 
@@ -78,21 +100,8 @@
         {
           "type": "github",
           "url": "https://github.com/PureGolded/homelab-configs",
-          "label": "View Configs"
-        }
-      ]
-    },
-    {
-      "id": "automation-scripts",
-      "title": "System Automation Scripts",
-      "description": "Collection of Python and Bash scripts for server automation, backup management, and system monitoring. Includes automated deployment scripts and server health checks.",
-      "technologies": ["Python", "Bash", "Linux", "Cron Jobs", "System Administration"],
-      "featured": false,
-      "links": [
-        {
-          "type": "github",
-          "url": "https://github.com/PureGolded/automation-scripts",
-          "label": "View Scripts"
+          "label": "View Configs",
+          "available": false
         }
       ]
     },
@@ -105,8 +114,27 @@
       "links": [
         {
           "type": "youtube",
-          "url": "https://youtube.com/@haicome",
-          "label": "YouTube Channel"
+          "url": "https://youtube.com/@purecz",
+          "label": "Czech Channel"
+        },
+        {
+          "type": "youtube",
+          "url": "https://youtube.com/@puregolded",
+          "label": "English Channel"
+        }
+      ]
+    },
+    {
+      "id": "dashcam-projects",
+      "title": "Video Editing for Dashcam Footage",
+      "description": "Specialized video editing for dashcam footage, focusing on safety, incident analysis, and engaging storytelling. Projects include accident compilations and road safety awareness videos.",
+      "technologies": ["Video Editing", "Motion Graphics", "Audio Production", "YouTube", "Content Strategy"],
+      "featured": false,
+      "links": [
+        {
+          "type": "youtube",
+          "url": "https://www.youtube.com/c/Brn%C4%9Bnsk%C3%A1odchytov%C3%A1",
+          "label": "Dashcam Channel"
         }
       ]
     }
