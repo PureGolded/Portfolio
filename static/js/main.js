@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
         initSmoothScrolling();
         initScrollToTop();
         initPageTransitions();
-    }, 200);
+    }, 20);
 });
 
 // Page loader functionality

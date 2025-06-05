@@ -30,7 +30,7 @@
                 </p>
             </div>
             <div class="about-image slide-in-right">
-                <img src="{{ url_for('static', filename='images/personal.png') }}" alt="Jiří Pavelka">
+                <img src="{{ url_for('static', filename='images/me.jpg') }}" alt="Jiří Pavelka">
             </div>
         </div>
     </div>
@@ -110,6 +110,11 @@
                     <p>Continuous learning through practical projects, online resources, and 
                        real-world problem solving. Strong ability to quickly adapt to new 
                        technologies and frameworks.</p>
+                </div>
+                <div class="certification-item">
+                    <h3>Understanding Code</h3>
+                    <p>My past experience includes working with various programming languages and frameworks,
+                       allowing me to quickly understand and adapt to new codebases.</p>
                 </div>
             </div>
             
@@ -229,8 +234,14 @@
 
 .skills-categories {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: var(--spacing-lg);
+}
+
+@media (max-width: 768px) {
+    .skills-categories {
+        grid-template-columns: 1fr;
+    }
 }
 
 .skill-category h3 {
@@ -329,10 +340,6 @@
     .about-image {
         order: -1;
         text-align: center;
-    }
-    
-    .skills-categories {
-        grid-template-columns: 1fr;
     }
 }
 </style>

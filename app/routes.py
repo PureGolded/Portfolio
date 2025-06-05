@@ -2,8 +2,10 @@
 Main routes for the portfolio application.
 """
 
-from flask import Blueprint, render_template, jsonify
-from app.models import db, Project
+from flask import Blueprint, render_template, jsonify, current_app
+import json
+import os
+import random
 import logging
 
 # Create Blueprint
@@ -14,12 +16,34 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
+def load_projects():
+    """Load projects from JSON file."""
+    try:
+        projects_file = os.path.join(current_app.static_folder, 'data', 'projects.json')
+        with open(projects_file, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            return data.get('projects', [])
+    except Exception as e:
+        logger.error(f"Error loading projects from JSON: {e}")
+        return []
+
+
 @main.route('/')
 def index():
     """Homepage with hero section and featured content."""
     try:
-        # Get featured projects (limit to 3 for homepage)
-        featured_projects = Project.query.filter_by(featured=True).limit(3).all()
+        # Load all projects
+        all_projects = load_projects()
+        
+        # Always include Haicome project
+        haicome_project = next((p for p in all_projects if p.get('featured', False)), None)
+        
+        # Get other non-featured projects and randomly select 2
+        other_projects = [p for p in all_projects if not p.get('featured', False)]
+        random_projects = random.sample(other_projects, min(2, len(other_projects)))
+        
+        # Combine featured project with random selection
+        featured_projects = [haicome_project] + random_projects if haicome_project else random_projects[:3]
         
         return render_template('index.html', 
                              featured_projects=featured_projects)
@@ -33,13 +57,16 @@ def index():
 def projects():
     """Projects showcase page."""
     try:
-        # Get all projects ordered by creation date
-        projects = Project.query.order_by(Project.date_created.desc()).all()
+        # Load all projects
+        all_projects = load_projects()
         
-        return render_template('projects.html', projects=projects)
+        # Get featured project (Haicome)
+        featured_project = next((p for p in all_projects if p.get('featured', False)), None)
+        
+        return render_template('projects.html', projects=all_projects, featured_project=featured_project)
     except Exception as e:
         logger.error(f"Error loading projects: {e}")
-        return render_template('projects.html', projects=[])
+        return render_template('projects.html', projects=[], featured_project=None)
 
 
 @main.route('/about')
@@ -52,23 +79,3 @@ def about():
 def contact():
     """Contact page with contact information."""
     return render_template('contact.html')
-
-
-@main.route('/api/projects/<int:project_id>')
-def project_api(project_id):
-    """API endpoint for project details (for modal/preview functionality)."""
-    try:
-        project = Project.query.get_or_404(project_id)
-        return jsonify({
-            'id': project.id,
-            'title': project.title,
-            'description': project.description,
-            'technologies': project.technologies.split(',') if project.technologies else [],
-            'github_url': project.github_url,
-            'live_url': project.live_url,
-            'image_url': project.image_url,
-            'featured': project.featured
-        })
-    except Exception as e:
-        logger.error(f"Error fetching project {project_id}: {e}")
-        return jsonify({'error': 'Project not found'}), 404

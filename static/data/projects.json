@@ -1,0 +1,114 @@
+{
+  "projects": [
+    {
+      "id": "haicome-network",
+      "title": "Haicome Network",
+      "description": "A community project focused on user experience for various services, like discord servers, minecraft servers and other. It is multipurpose and aims to provide seamless integration and management tools for users. As well as serves as a 'company' naming for my sub-projects.",
+      "image": "logo_trans.png",
+      "technologies": ["Ubuntu Hosting", "Docker Manipulation", "System Administration", "Community Management", "Infrastructure", "User Experience", "AI Integration"],
+      "featured": true,
+      "status": "Live Infrastructure",
+      "links": [
+        {
+          "type": "website",
+          "url": "https://haicome.net",
+          "label": "Visit Haicome",
+          "available": false
+        }
+      ]
+    },
+    {
+      "id": "lunox-discord-bot",
+      "title": "Lunox Discord Bot",
+      "description": "A comprehensive Discord bot built with Python, featuring community management tools, entertainment commands, and database integration for persistent data storage.",
+      "technologies": ["Python", "Discord.py", "SQLite", "Async Programming"],
+      "featured": false,
+      "links": [
+        {
+          "type": "github",
+          "url": "https://github.com/PureGolded/Lunox",
+          "label": "View Code"
+        },
+        {
+          "type": "discord",
+          "url": "https://discord.gg/haicome",
+          "label": "Join Server"
+        }
+      ]
+    },
+    {
+      "id": "minecraft-server-network",
+      "title": "Minecraft Server Network",
+      "description": "Custom Java plugins developed using Spigot API to enhance multiplayer gameplay. Features include custom game mechanics, player management, and database integration.",
+      "technologies": ["Java", "Spigot API", "MySQL", "Plugin Development"],
+      "featured": false,
+      "links": [
+        {
+          "type": "github",
+          "url": "https://github.com/PureGolded/minecraft-plugins",
+          "label": "View Plugins"
+        }
+      ]
+    },
+    {
+      "id": "portfolio-website",
+      "title": "Portfolio Website",
+      "description": "This responsive portfolio website built with Flask, featuring modern dark theme design, smooth animations, and GSAP-powered scroll effects.",
+      "technologies": ["Python Flask", "HTML/CSS/JS", "SQLAlchemy", "GSAP", "Responsive Design"],
+      "featured": false,
+      "links": [
+        {
+          "type": "github",
+          "url": "https://github.com/PureGolded/portfolio",
+          "label": "View Source"
+        },
+        {
+          "type": "website",
+          "url": "https://portfolio.haicome.net",
+          "label": "Live Site"
+        }
+      ]    },
+    {
+      "id": "home-server-infrastructure",
+      "title": "Home Server Infrastructure", 
+      "description": "Complete server setup with RAID configuration, Docker containers, and multiple self-hosted services for personal and development use.",
+      "technologies": ["Linux", "Docker", "RAID", "Networking", "System Administration"],
+      "featured": false,
+      "links": [
+        {
+          "type": "github",
+          "url": "https://github.com/PureGolded/homelab-configs",
+          "label": "View Configs"
+        }
+      ]
+    },
+    {
+      "id": "automation-scripts",
+      "title": "System Automation Scripts",
+      "description": "Collection of Python and Bash scripts for server automation, backup management, and system monitoring. Includes automated deployment scripts and server health checks.",
+      "technologies": ["Python", "Bash", "Linux", "Cron Jobs", "System Administration"],
+      "featured": false,
+      "links": [
+        {
+          "type": "github",
+          "url": "https://github.com/PureGolded/automation-scripts",
+          "label": "View Scripts"
+        }
+      ]
+    },
+    {
+      "id": "video-editing-projects",
+      "title": "Video Editing & Content Creation",
+      "description": "Creative video editing projects including YouTube content, promotional videos, and digital storytelling. Focus on engaging visual narratives and professional post-production techniques.",
+      "technologies": ["Video Editing", "Motion Graphics", "Audio Production", "YouTube", "Content Strategy"],
+      "featured": false,
+      "links": [
+        {
+          "type": "youtube",
+          "url": "https://youtube.com/@haicome",
+          "label": "YouTube Channel"
+        }
+      ]
+    }
+  ]
+}

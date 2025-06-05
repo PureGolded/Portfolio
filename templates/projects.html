@@ -185,16 +185,15 @@
     
     .project-tech {
         justify-content: center; /* Center tech tags on mobile */
+    }    .project-links {
+        justify-content: center; /* Center buttons on mobile */
+        gap: var(--spacing-sm);
     }
     
-    .project-links {
-        flex-direction: column;
-        align-items: center; /* Center buttons on mobile */
-    }
-    
-    .project-links .btn {
-        width: 100%; /* Full width buttons on mobile */
-        max-width: 200px;
+    .project-links .btn-icon,
+    .project-links .btn-disabled {
+        width: 40px !important; /* Keep square shape on mobile */
+        height: 40px !important;
     }
 }
 
@@ -235,118 +234,112 @@
 <section class="featured-project section">
     <div class="container">
         <h2 class="section-title reveal-section">Featured Project</h2>
+        {% if featured_project %}
         <div class="featured-project-card card reveal-section">
             <div class="featured-content">
                 <div class="featured-text">
-                    <h3>Haicome - Personal Infrastructure Platform</h3>
-                    <p>A comprehensive personal server infrastructure featuring complete RAID configuration, Docker containerization, web hosting capabilities, game servers, and home cloud solutions. This project represents my expertise in system administration, networking, and infrastructure management.</p>
+                    <h3>{{ featured_project.title }}</h3>
+                    <p>{{ featured_project.description }}</p>
                     <div class="project-tech">
-                        <span class="tech-tag">Linux Ubuntu</span>
-                        <span class="tech-tag">Docker</span>
-                        <span class="tech-tag">RAID Configuration</span>
-                        <span class="tech-tag">Networking</span>
-                        <span class="tech-tag">DNS Management</span>
-                        <span class="tech-tag">Web Hosting</span>
-                        <span class="tech-tag">System Administration</span>
+                        {% for tech in featured_project.technologies %}
+                        <span class="tech-tag">{{ tech }}</span>
+                        {% endfor %}
                     </div>
-                    <div class="project-links">
-                        <a href="https://haicome.net" target="_blank" class="btn btn-primary" rel="noopener">
-                            <span>Visit Haicome</span>
-                        </a>
+                    <div class="project-links">                        {% for link in featured_project.links %}
+                            {% if link.type == 'github' %}
+                                <a href="{{ link.url }}" target="_blank" class="btn btn-icon" rel="noopener" title="{{ link.label }}">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            {% elif link.type == 'discord' %}
+                                <a href="{{ link.url }}" target="_blank" class="btn btn-icon" rel="noopener" title="{{ link.label }}">
+                                    <i class="fab fa-discord"></i>
+                                </a>
+                            {% elif link.type == 'youtube' %}
+                                <a href="{{ link.url }}" target="_blank" class="btn btn-icon" rel="noopener" title="{{ link.label }}">
+                                    <i class="fab fa-youtube"></i>
+                                </a>                                {% elif link.type == 'website' %}
+                                    {% if link.available == false %}
+                                        <span class="btn btn-disabled" title="Not Available Yet">
+                                            <i class="fas fa-globe"></i>
+                                        </span>
+                                        <small class="availability-note">← Not Available Yet</small>
+                                    {% else %}
+                                        <a href="{{ link.url }}" target="_blank" class="btn btn-icon" rel="noopener" title="{{ link.label }}">
+                                            <i class="fas fa-globe"></i>
+                                        </a>
+                                    {% endif %}
+                            {% endif %}
+                        {% endfor %}
                     </div>
-                </div>                <div class="featured-visual">
-                    <img src="{{ url_for('static', filename='images/logo_trans.png') }}" alt="Haicome Logo" class="haicome-logo">
-                    <p class="featured-status">Live Infrastructure</p>
+                </div>
+                <div class="featured-visual">
+                    {% if featured_project.image %}
+                    <img src="{{ url_for('static', filename='images/' + featured_project.image) }}" alt="{{ featured_project.title }}" class="haicome-logo">
+                    {% endif %}
+                    {% if featured_project.status %}
+                    <p class="featured-status">{{ featured_project.status }}</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
+        {% else %}
+        <div class="empty-state">
+            <p>No featured project available</p>
+        </div>
+        {% endif %}
     </div>
 </section>
 
 <section class="projects-listing section">
     <div class="container">
         <h2 class="section-title reveal-section">Other Projects</h2>
-        {% if projects %}
-        <div class="projects-grid grid grid-2 stagger-container">
+        {% if projects %}        <div class="projects-grid grid grid-2 stagger-container">
             {% for project in projects %}
-            <div class="project-card card stagger-item">
-                {% if project.image_url %}
-                <div class="project-image">
-                    <img src="{{ project.image_url }}" alt="{{ project.title }}" loading="lazy">
-                </div>
-                {% endif %}
-                <div class="project-content">
-                    <h3 class="project-title">{{ project.title }}</h3>
-                    <p class="project-description">{{ project.description }}</p>
-                    {% if project.technologies %}
-                    <div class="project-tech">
-                        {% for tech in project.technologies.split(',') %}
-                        <span class="tech-tag">{{ tech.strip() }}</span>
-                        {% endfor %}
+                {% if not project.featured %}
+                <div class="project-card card stagger-item">
+                    {% if project.image %}
+                    <div class="project-image">
+                        <img src="{{ url_for('static', filename='images/' + project.image) }}" alt="{{ project.title }}" loading="lazy">
                     </div>
                     {% endif %}
-                    <div class="project-links">
-                        {% if project.github_url %}
-                        <a href="{{ project.github_url }}" target="_blank" class="btn btn-outline" rel="noopener">
-                            <span>View Code</span>
-                        </a>
+                    <div class="project-content">
+                        <h3 class="project-title">{{ project.title }}</h3>
+                        <p class="project-description">{{ project.description }}</p>
+                        {% if project.technologies %}
+                        <div class="project-tech">
+                            {% for tech in project.technologies %}
+                            <span class="tech-tag">{{ tech }}</span>
+                            {% endfor %}
+                        </div>
                         {% endif %}
-                        {% if project.live_url %}
-                        <a href="{{ project.live_url }}" target="_blank" class="btn btn-primary" rel="noopener">
-                            <span>Live Demo</span>
-                        </a>
-                        {% endif %}
+                        <div class="project-links">                            {% for link in project.links %}
+                                {% if link.type == 'github' %}
+                                    <a href="{{ link.url }}" target="_blank" class="btn btn-icon" rel="noopener" title="{{ link.label }}">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                {% elif link.type == 'discord' %}
+                                    <a href="{{ link.url }}" target="_blank" class="btn btn-icon" rel="noopener" title="{{ link.label }}">
+                                        <i class="fab fa-discord"></i>
+                                    </a>
+                                {% elif link.type == 'youtube' %}
+                                    <a href="{{ link.url }}" target="_blank" class="btn btn-icon" rel="noopener" title="{{ link.label }}">
+                                        <i class="fab fa-youtube"></i>
+                                    </a>                                {% elif link.type == 'website' %}
+                                    <a href="{{ link.url }}" target="_blank" class="btn btn-icon" rel="noopener" title="{{ link.label }}">
+                                        <i class="fas fa-globe"></i>
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
-            </div>
+                {% endif %}
             {% endfor %}
-        </div>
-        {% else %}
-        <!-- Fallback with sample projects when no database projects exist -->
-        <div class="projects-grid grid grid-2 stagger-container">
-            <div class="project-card card stagger-item">
-                <div class="project-content">
-                    <h3>Lunox Discord Bot</h3>
-                    <p>A comprehensive Discord bot built with Python, featuring community management tools, entertainment commands, and database integration for persistent data storage.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Discord.py</span>
-                        <span class="tech-tag">SQLite</span>
-                        <span class="tech-tag">Async Programming</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/PureGolded/Lunox" target="_blank" class="btn btn-outline" rel="noopener">
-                            <span>View Code</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="project-card card stagger-item">
-                <div class="project-content">
-                    <h3>Minecraft Server Network</h3>
-                    <p>Custom Java plugins developed using Spigot API to enhance multiplayer gameplay. Features include custom game mechanics, player management, and database integration.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Java</span>
-                        <span class="tech-tag">Spigot API</span>
-                        <span class="tech-tag">MySQL</span>
-                        <span class="tech-tag">Plugin Development</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="project-card card stagger-item">
-                <div class="project-content">
-                    <h3>Portfolio Website</h3>
-                    <p>This responsive portfolio website built with Flask, featuring modern dark theme design, smooth animations, and GSAP-powered scroll effects.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python Flask</span>
-                        <span class="tech-tag">HTML/CSS/JS</span>
-                        <span class="tech-tag">SQLAlchemy</span>
-                        <span class="tech-tag">GSAP</span>
-                        <span class="tech-tag">Responsive Design</span>
-                    </div>
-                </div>
+        </div>        {% else %}
+        <div class="empty-state">
+            <div class="empty-content">
+                <h3>No projects available</h3>
+                <p>Projects will be loaded from the JSON data file.</p>
             </div>
         </div>
         {% endif %}

@@ -309,6 +309,7 @@ a:hover {
     background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-red-light) 30%, var(--accent-orange) 70%, var(--accent-orange-light) 100%);
     background-size: 200% 200%;
     color: var(--pure-white);
+    border: none;
     animation: gradientShift 3s ease-in-out infinite;
 }
 
@@ -327,6 +328,179 @@ a:hover {
 .btn-outline:hover {
     background: var(--accent-orange);
     color: var(--pure-white);
+}
+
+.btn-icon {
+    background: var(--dark-secondary);
+    border: 1px solid var(--text-secondary);
+    color: var(--text-primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: 8px;
+    transition: all var(--transition-fast);
+    text-decoration: none;
+}
+
+.btn-icon:hover {
+    background: var(--accent-orange);
+    border-color: var(--accent-orange);
+    color: var(--pure-white);
+    transform: translateY(-1px);
+}
+
+.btn-icon i {
+    font-size: 1.2em;
+}
+
+.btn-disabled {
+    background: var(--dark-primary);
+    border: 1px solid var(--text-muted);
+    color: var(--text-muted);
+    cursor: not-allowed;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: 8px;
+    opacity: 0.6;
+}
+
+.availability-note {
+    color: var(--text-muted);
+    font-style: italic;
+    margin-left: var(--spacing-xs);
+}
+
+/* Project Link Buttons - Specific styling to prevent gradient inheritance */
+.project-links .btn-icon,
+.project-links .btn-disabled,
+.project-links a.btn-icon,
+.project-links span.btn-disabled {
+    /* Reset any inherited gradient backgrounds */
+    background: var(--dark-secondary) !important;
+    background-image: none !important;
+    background-size: auto !important;
+    animation: none !important;
+    
+    /* Ensure consistent sizing and styling */
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 40px !important;
+    height: 40px !important;
+    padding: 0 !important;
+    border: 1px solid var(--text-secondary) !important;
+    border-radius: 8px !important;
+    color: var(--text-primary) !important;
+    text-decoration: none !important;
+    transition: all var(--transition-fast) !important;
+    
+    /* Remove any box-shadow that might interfere */
+    box-shadow: none !important;
+    
+    /* Reset font awesome icon positioning */
+    font-size: 1rem !important;
+}
+
+.project-links .btn-icon:hover,
+.project-links a.btn-icon:hover {
+    background: var(--accent-orange) !important;
+    background-image: none !important;
+    border-color: var(--accent-orange) !important;
+    color: var(--pure-white) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: none !important;
+    animation: none !important;
+}
+
+.project-links .btn-disabled,
+.project-links span.btn-disabled {
+    background: var(--dark-primary) !important;
+    background-image: none !important;
+    border-color: var(--text-muted) !important;
+    color: var(--text-muted) !important;
+    cursor: not-allowed !important;
+    opacity: 0.6 !important;
+    animation: none !important;
+    box-shadow: none !important;
+}
+
+.project-links .btn-disabled:hover,
+.project-links span.btn-disabled:hover {
+    background: var(--dark-primary) !important;
+    background-image: none !important;
+    transform: none !important;
+}
+
+.project-links .btn i {
+    font-size: 1.2em !important;
+    width: auto !important;
+    height: auto !important;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    animation: none !important;
+}
+
+/* Homepage Project Links - Ensure clean styling */
+.projects-grid .project-links .btn-icon,
+.projects-grid .project-links .btn-disabled {
+    background: var(--dark-secondary) !important;
+    background-image: none !important;
+    background-size: auto !important;
+    animation: none !important;
+    box-shadow: none !important;
+    
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border: 1px solid var(--text-secondary);
+    border-radius: 8px;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: all var(--transition-fast);
+}
+
+.projects-grid .project-links .btn-icon:hover {
+    background: var(--accent-orange) !important;
+    background-image: none !important;
+    border-color: var(--accent-orange);
+    color: var(--pure-white);
+    transform: translateY(-1px);
+    box-shadow: none !important;
+    animation: none !important;
+}
+
+.projects-grid .project-links .btn-disabled {
+    background: var(--dark-primary) !important;
+    background-image: none !important;
+    border-color: var(--text-muted);
+    color: var(--text-muted);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.projects-grid .project-links .btn-disabled:hover {
+    background: var(--dark-primary) !important;
+    transform: none;
+}
+
+/* Project Links Container */
+.project-links {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 /* Grid System */
@@ -466,7 +640,9 @@ a:hover {
     gap: 1rem;
 }
 
-.fab {
+/* Specific selector to avoid conflicts with Font Awesome .fab icons */
+.fab-container .fab,
+button.fab {
     width: 56px;
     height: 56px;
     border-radius: 50%;
@@ -485,18 +661,21 @@ a:hover {
     animation: gradientShift 3s ease-in-out infinite;
 }
 
-.fab:hover {
+.fab-container .fab:hover,
+button.fab:hover {
     transform: translateY(-2px) scale(1.1);
     box-shadow: 0 12px 32px rgba(139, 0, 0, 0.4);
 }
 
-.fab.scroll-top {
+.fab-container .fab.scroll-top,
+button.fab.scroll-top {
     opacity: 0;
     transform: translateY(20px);
     transition: all var(--transition-medium);
 }
 
-.fab.scroll-top.visible {
+.fab-container .fab.scroll-top.visible,
+button.fab.scroll-top.visible {
     opacity: 1;
     transform: translateY(0);
 }
@@ -724,4 +903,27 @@ a:hover {
     
     h1 { font-size: 2rem; }
     h2 { font-size: 1.75rem; }
+}
+
+/* Font Awesome Icon Reset - Prevent conflicts with custom .fab buttons */
+.fab.fa-github,
+.fab.fa-discord, 
+.fab.fa-youtube,
+.fas.fa-globe {
+    /* Reset any conflicting styles */
+    width: auto !important;
+    height: auto !important;
+    border-radius: 0 !important;
+    background: none !important;
+    background-image: none !important;
+    background-size: auto !important;
+    border: none !important;
+    box-shadow: none !important;
+    animation: none !important;
+    transform: none !important;
+    transition: none !important;
+    display: inline !important;
+    cursor: inherit !important;
+    color: inherit !important;
+    font-size: inherit !important;
 }

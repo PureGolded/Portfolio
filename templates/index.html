@@ -74,12 +74,12 @@
                 </p>
                 <div class="value-highlights">
                     <div class="highlight-item">
-                        <span class="highlight-number">8+</span>
+                        <span class="highlight-number">4+</span>
                         <span class="highlight-text">Years of Experience</span>
                     </div>
                     <div class="highlight-item">
                         <span class="highlight-number">15+</span>
-                        <span class="highlight-text">Technologies Mastered</span>
+                        <span class="highlight-text">Technologies Controlled</span>
                     </div>
                 </div>
             </div>
@@ -93,6 +93,7 @@
                     <div class="tech-item">Docker</div>
                     <div class="tech-item">MySQL</div>
                     <div class="tech-item">Git</div>
+                    <div class="tech-item">AI</div>
                 </div>
             </div>
         </div>
@@ -102,74 +103,52 @@
 <!-- Featured Projects Section -->
 <section class="projects-section section" id="featured-projects">
     <div class="container">
-        <h2 class="section-title reveal-section">Featured Projects</h2>
-        <div class="projects-grid grid grid-3 stagger-container">
+        <h2 class="section-title reveal-section">Featured Projects</h2>        <div class="projects-grid grid grid-3 stagger-container">
             {% if featured_projects %}
-                {% for project in featured_projects %}
-                <div class="project-card card stagger-item hover-lift">
-                    {% if project.image_url %}
-                    <div class="project-image">
-                        <img src="{{ project.image_url }}" alt="{{ project.title }}">
-                    </div>
-                    {% endif %}
+                {% for project in featured_projects %}                <div class="project-card card stagger-item hover-lift">
+                    <!-- Project images hidden on homepage for cleaner look -->
                     <div class="project-content">
                         <h3>{{ project.title }}</h3>
-                        <p>{{ project.description[:100] }}...</p>
+                        <p>{{ project.description[:120] }}{% if project.description|length > 120 %}...{% endif %}</p>
                         <div class="project-tech">
                             {% if project.technologies %}
-                                {% for tech in project.technologies.split(',') %}
-                                <span class="tech-tag">{{ tech.strip() }}</span>
+                                {% for tech in project.technologies %}
+                                <span class="tech-tag">{{ tech }}</span>
                                 {% endfor %}
                             {% endif %}
                         </div>
-                        <div class="project-links">
-                            {% if project.github_url %}
-                            <a href="{{ project.github_url }}" target="_blank" class="btn btn-outline">GitHub</a>
-                            {% endif %}
-                            {% if project.live_url %}
-                            <a href="{{ project.live_url }}" target="_blank" class="btn btn-primary">Live Demo</a>
-                            {% endif %}
+                        <div class="project-links">                            {% for link in project.links %}
+                                {% if link.type == 'github' %}
+                                    <a href="{{ link.url }}" target="_blank" class="btn btn-icon" rel="noopener" title="{{ link.label }}">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                {% elif link.type == 'discord' %}
+                                    <a href="{{ link.url }}" target="_blank" class="btn btn-icon" rel="noopener" title="{{ link.label }}">
+                                        <i class="fab fa-discord"></i>
+                                    </a>
+                                {% elif link.type == 'youtube' %}
+                                    <a href="{{ link.url }}" target="_blank" class="btn btn-icon" rel="noopener" title="{{ link.label }}">
+                                        <i class="fab fa-youtube"></i>
+                                    </a>
+                                {% elif link.type == 'website' %}
+                                    {% if link.available == false %}
+                                        <span class="btn btn-disabled" title="Not Available Yet">
+                                            <i class="fas fa-globe"></i>
+                                        </span>
+                                    {% else %}                                        <a href="{{ link.url }}" target="_blank" class="btn btn-icon" rel="noopener" title="{{ link.label }}">
+                                            <i class="fas fa-globe"></i>
+                                        </a>
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
-                {% endfor %}
-            {% else %}
-            <!-- Placeholder projects -->
-            <div class="project-card card stagger-item hover-lift">
-                <div class="project-content">
-                    <h3>Lunox Discord Bot</h3>
-                    <p>Advanced Python Discord bot with multiple features for community management and entertainment.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Discord.py</span>
-                        <span class="tech-tag">SQLite</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://github.com/PureGolded/Lunox" target="_blank" class="btn btn-outline">GitHub</a>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card card stagger-item hover-lift">
-                <div class="project-content">
-                    <h3>Home Server Infrastructure</h3>
-                    <p>Complete server setup with RAID configuration, Docker containers, and multiple self-hosted services.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Linux</span>
-                        <span class="tech-tag">Docker</span>
-                        <span class="tech-tag">RAID</span>
-                        <span class="tech-tag">Networking</span>
-                    </div>
-                </div>
-            </div>
-            <div class="project-card card stagger-item hover-lift">
-                <div class="project-content">
-                    <h3>Minecraft Server Network</h3>
-                    <p>Custom Java plugins and server management for multiplayer gaming experience with advanced features.</p>
-                    <div class="project-tech">
-                        <span class="tech-tag">Java</span>
-                        <span class="tech-tag">Spigot API</span>
-                        <span class="tech-tag">MySQL</span>
-                    </div>
+                {% endfor %}            {% else %}
+            <div class="empty-state">
+                <div class="empty-content">
+                    <h3>No projects available</h3>
+                    <p>Projects will be loaded from the JSON data file.</p>
                 </div>
             </div>
             {% endif %}
