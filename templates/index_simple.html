@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Jiří Pavelka - IT Specialist & Creative Developer{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Welcome to Jiří Pavelka's Portfolio</h1>
+    <p>This is a test homepage.</p>
+    {% if featured_projects %}
+        <h2>Featured Projects</h2>
+        <ul>
+        {% for project in featured_projects %}
+            <li>{{ project.title }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+{% endblock %}

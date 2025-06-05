@@ -1,0 +1,485 @@
+{% extends "base.html" %}
+{% block title %}Jiří Pavelka - IT Specialist & Creative Developer{% endblock %}
+{% block body_class %}homepage{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section" id="hero">
+    <div class="container">
+        <div class="hero-content fade-in">
+            <h1 class="hero-title">
+                Hi, I'm <span class="text-gradient">Jiří Pavelka</span>
+            </h1>
+            <p class="hero-subtitle">
+                IT Specialist & Creative Developer
+            </p>
+            <p class="hero-description">
+                Building robust solutions with Java, Python, and modern web technologies. 
+                Combining technical expertise with creative vision.
+            </p>
+            <div class="hero-actions">
+                <a href="{{ url_for('main.projects') }}" class="btn btn-primary">View Projects</a>
+                <a href="{{ url_for('main.contact') }}" class="btn btn-outline">Get In Touch</a>
+            </div>        </div>
+        <div class="scroll-indicator" onclick="scrollToSection('#skills')">
+            <div class="scroll-arrow"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Overview Section -->
+<section class="skills-section section" id="skills">
+    <div class="container">
+        <h2 class="section-title reveal-section">Core Expertise</h2>
+        <div class="skills-grid grid grid-4 stagger-container">
+            <div class="skill-card card stagger-item">
+                <div class="skill-icon">💻</div>
+                <h3>Software Development</h3>
+                <p>Java, Python, and web development with Flask. Experience in building robust applications and systems.</p>
+            </div>
+            <div class="skill-card card stagger-item">
+                <div class="skill-icon">🖥️</div>
+                <h3>System Administration</h3>
+                <p>Linux, Windows Server, Docker, and infrastructure management. Physical server maintenance and configuration.</p>
+            </div>
+            <div class="skill-card card stagger-item">
+                <div class="skill-icon">🎬</div>
+                <h3>Video Editing</h3>
+                <p>Creative content production and video editing. YouTube channel management and visual storytelling.</p>
+            </div>
+            <div class="skill-card card stagger-item">
+                <div class="skill-icon">🔧</div>
+                <h3>Hardware Expertise</h3>
+                <p>Computer building, RAID configuration, and hardware troubleshooting. Deep understanding of system components.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Value Proposition Section -->
+<section class="value-section section" id="value">
+    <div class="container">
+        <div class="value-content grid grid-2">
+            <div class="value-text slide-in-left">
+                <h2>What Makes Me Different</h2>
+                <p>
+                    I bring a unique combination of technical depth and creative thinking to every project. 
+                    My journey started at 12 with game development dreams and evolved into comprehensive 
+                    IT expertise spanning multiple domains.
+                </p>
+                <p>
+                    From managing physical servers with RAID configurations to creating engaging video content, 
+                    I understand technology from the ground up. This holistic view allows me to build solutions 
+                    that are both technically sound and user-focused.
+                </p>
+                <div class="value-highlights">
+                    <div class="highlight-item">
+                        <span class="highlight-number">8+</span>
+                        <span class="highlight-text">Years of Experience</span>
+                    </div>
+                    <div class="highlight-item">
+                        <span class="highlight-number">15+</span>
+                        <span class="highlight-text">Technologies Mastered</span>
+                    </div>
+                </div>
+            </div>
+            <div class="value-visual slide-in-right">
+                <div class="tech-stack">
+                    <div class="tech-item">Java</div>
+                    <div class="tech-item">Python</div>
+                    <div class="tech-item">Flask</div>
+                    <div class="tech-item">JavaScript</div>
+                    <div class="tech-item">Linux</div>
+                    <div class="tech-item">Docker</div>
+                    <div class="tech-item">MySQL</div>
+                    <div class="tech-item">Git</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Projects Section -->
+<section class="projects-section section" id="featured-projects">
+    <div class="container">
+        <h2 class="section-title reveal-section">Featured Projects</h2>
+        <div class="projects-grid grid grid-3 stagger-container">
+            {% if featured_projects %}
+                {% for project in featured_projects %}
+                <div class="project-card card stagger-item hover-lift">
+                    {% if project.image_url %}
+                    <div class="project-image">
+                        <img src="{{ project.image_url }}" alt="{{ project.title }}">
+                    </div>
+                    {% endif %}
+                    <div class="project-content">
+                        <h3>{{ project.title }}</h3>
+                        <p>{{ project.description[:100] }}...</p>
+                        <div class="project-tech">
+                            {% if project.technologies %}
+                                {% for tech in project.technologies.split(',') %}
+                                <span class="tech-tag">{{ tech.strip() }}</span>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                        <div class="project-links">
+                            {% if project.github_url %}
+                            <a href="{{ project.github_url }}" target="_blank" class="btn btn-outline">GitHub</a>
+                            {% endif %}
+                            {% if project.live_url %}
+                            <a href="{{ project.live_url }}" target="_blank" class="btn btn-primary">Live Demo</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+            <!-- Placeholder projects -->
+            <div class="project-card card stagger-item hover-lift">
+                <div class="project-content">
+                    <h3>Lunox Discord Bot</h3>
+                    <p>Advanced Python Discord bot with multiple features for community management and entertainment.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Discord.py</span>
+                        <span class="tech-tag">SQLite</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/PureGolded/Lunox" target="_blank" class="btn btn-outline">GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card card stagger-item hover-lift">
+                <div class="project-content">
+                    <h3>Home Server Infrastructure</h3>
+                    <p>Complete server setup with RAID configuration, Docker containers, and multiple self-hosted services.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Linux</span>
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">RAID</span>
+                        <span class="tech-tag">Networking</span>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card card stagger-item hover-lift">
+                <div class="project-content">
+                    <h3>Minecraft Server Network</h3>
+                    <p>Custom Java plugins and server management for multiplayer gaming experience with advanced features.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Java</span>
+                        <span class="tech-tag">Spigot API</span>
+                        <span class="tech-tag">MySQL</span>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        <div class="projects-cta">
+            <a href="{{ url_for('main.projects') }}" class="btn btn-primary">View All Projects</a>
+        </div>
+    </div>
+</section>
+
+<!-- Background Section -->
+<section class="background-section section" id="background">
+    <div class="container">
+        <h2 class="section-title reveal-section">My Journey</h2>
+        <div class="timeline">
+            <div class="timeline-item fade-in">
+                <div class="timeline-year">2017</div>
+                <div class="timeline-content">
+                    <h3>The Beginning</h3>
+                    <p>Started programming at age 12 with Python Discord bots and Java Minecraft plugins.</p>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-year">2020</div>
+                <div class="timeline-content">
+                    <h3>IT High School</h3>
+                    <p>Enrolled in IT-focused high school in Brno, learning networking, systems administration, and advanced programming.</p>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-year">2021</div>
+                <div class="timeline-content">
+                    <h3>Server Infrastructure</h3>
+                    <p>Built and deployed personal server infrastructure with haicome.net domain, hosting multiple services.</p>
+                </div>
+            </div>
+            <div class="timeline-item fade-in">
+                <div class="timeline-year">2025</div>
+                <div class="timeline-content">
+                    <h3>IT Specialist Graduate</h3>
+                    <p>Graduated with specialization in IT systems and networking. Ready for professional challenges.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact CTA Section -->
+<section class="contact-cta-section section" id="contact-cta">
+    <div class="container">
+        <div class="cta-content scale-in">
+            <h2>Ready to Build Something Amazing?</h2>
+            <p>Let's discuss how my technical skills and creative approach can contribute to your next project.</p>
+            <div class="cta-actions">
+                <a href="{{ url_for('main.contact') }}" class="btn btn-primary">Start a Conversation</a>
+                <a href="{{ url_for('main.about') }}" class="btn btn-outline">Learn More About Me</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_head %}
+<style>
+/* Hero Section Styles */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(135deg, var(--dark-primary) 0%, var(--dark-secondary) 100%);
+    position: relative;
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.hero-title {
+    font-size: 4rem;
+    margin-bottom: var(--spacing-md);
+    font-weight: var(--font-weight-bold);
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: var(--accent-orange);
+    margin-bottom: var(--spacing-lg);
+    font-weight: var(--font-weight-medium);
+}
+
+.hero-description {
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-xl);
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.hero-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+}
+
+.scroll-arrow {
+    width: 24px;
+    height: 24px;
+    border-right: 2px solid var(--accent-orange);
+    border-bottom: 2px solid var(--accent-orange);
+    transform: rotate(45deg);
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+    40% { transform: translateX(-50%) translateY(-10px); }
+    60% { transform: translateX(-50%) translateY(-5px); }
+}
+
+/* Skills Section */
+.skills-grid {
+    margin-top: var(--spacing-xl);
+}
+
+.skill-card {
+    text-align: center;
+}
+
+.skill-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
+}
+
+/* Value Section */
+.value-highlights {
+    display: flex;
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-lg);
+}
+
+.highlight-item {
+    text-align: center;
+}
+
+.highlight-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--accent-orange);
+    line-height: 1;
+}
+
+.highlight-text {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    justify-content: center;
+}
+
+.tech-item {
+    background: var(--dark-tertiary);
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: var(--font-weight-medium);
+    border: 1px solid transparent;
+    transition: all var(--transition-fast);
+}
+
+.tech-item:hover {
+    border-color: var(--accent-orange);
+    color: var(--accent-orange);
+}
+
+/* Projects Section */
+.project-image {
+    height: 200px;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: var(--spacing-md);
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    margin: var(--spacing-md) 0;
+}
+
+.tech-tag {
+    background: var(--primary-red);
+    color: var(--pure-white);
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: var(--font-weight-medium);
+}
+
+.project-links {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+}
+
+.projects-cta {
+    text-align: center;
+    margin-top: var(--spacing-xl);
+}
+
+/* Timeline */
+.timeline {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--accent-orange);
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    display: flex;
+    margin-bottom: var(--spacing-xl);
+    position: relative;
+}
+
+.timeline-item:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.timeline-year {
+    background: var(--accent-orange);
+    color: var(--pure-white);
+    padding: var(--spacing-sm);
+    border-radius: 8px;
+    font-weight: var(--font-weight-bold);
+    min-width: 80px;
+    text-align: center;
+    margin: 0 var(--spacing-lg);
+    position: relative;
+    z-index: 2;
+}
+
+.timeline-content {
+    flex: 1;
+    background: var(--dark-secondary);
+    padding: var(--spacing-lg);
+    border-radius: 8px;
+    border: 1px solid var(--dark-tertiary);
+}
+
+/* Contact CTA */
+.contact-cta-section {
+    background: var(--dark-secondary);
+    text-align: center;
+}
+
+.cta-content h2 {
+    margin-bottom: var(--spacing-md);
+}
+
+.cta-content p {
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-xl);
+    color: var(--text-secondary);
+}
+
+.cta-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-title { font-size: 2.5rem; }
+    .hero-actions { flex-direction: column; align-items: center; }
+    .value-highlights { flex-direction: column; gap: var(--spacing-md); }
+    .timeline::before { left: 20px; }
+    .timeline-item { flex-direction: column; margin-left: 40px; }
+    .timeline-item:nth-child(even) { flex-direction: column; }
+    .timeline-year { margin: 0 0 var(--spacing-sm) 0; align-self: flex-start; }
+}
+</style>
+{% endblock %}

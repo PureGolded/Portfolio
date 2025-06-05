@@ -1,0 +1,10 @@
+Flask==2.3.3
+Flask-SQLAlchemy==3.0.5
+Flask-Migrate==4.0.5
+Flask-WTF==1.2.2
+WTForms==3.2.1
+Pillow==11.2.1
+Markdown==3.5.1
+Flask-Caching==2.3.1
+email-validator==2.0.0
+python-dotenv==1.0.0

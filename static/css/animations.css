@@ -1,0 +1,142 @@
+/* Animation Utilities */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-in-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 0.8s ease;
+}
+
+.slide-in-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.slide-in-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.8s ease;
+}
+
+.slide-in-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.scale-in {
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.8s ease;
+}
+
+.scale-in.visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Stagger animations for lists */
+.stagger-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.stagger-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.stagger-item:nth-child(1) { transition-delay: 0.1s; }
+.stagger-item:nth-child(2) { transition-delay: 0.2s; }
+.stagger-item:nth-child(3) { transition-delay: 0.3s; }
+.stagger-item:nth-child(4) { transition-delay: 0.4s; }
+.stagger-item:nth-child(5) { transition-delay: 0.5s; }
+.stagger-item:nth-child(6) { transition-delay: 0.6s; }
+
+/* Smooth scroll progress indicator */
+.scroll-progress {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-red) 0%, var(--primary-red-light) 25%, var(--accent-orange) 75%, var(--accent-orange-light) 100%);
+    background-size: 200% 100%;
+    z-index: 1001;
+    transition: width 0.1s ease;
+    animation: gradientFlow 2s ease-in-out infinite;
+}
+
+/* Loading animations */
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+@keyframes gradientFlow {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.loading {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Hover animations */
+.hover-lift {
+    transition: transform var(--transition-medium);
+}
+
+.hover-lift:hover {
+    transform: translateY(-10px);
+}
+
+/* Text animations */
+.text-gradient {
+    background: linear-gradient(135deg, var(--primary-red) 0%, var(--primary-red-light) 30%, var(--accent-orange) 70%, var(--accent-orange-light) 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 3s ease-in-out infinite;
+}
+
+.text-glow {
+    text-shadow: 0 0 20px rgba(255, 69, 0, 0.5);
+}
+
+/* Parallax effect utility */
+.parallax-container {
+    overflow: hidden;
+}
+
+.parallax-element {
+    transition: transform 0.1s ease-out;
+}
+
+/* Smooth reveal animations for sections */
+.reveal-section {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s ease;
+}
+
+.reveal-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}

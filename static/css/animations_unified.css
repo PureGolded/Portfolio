@@ -1,0 +1,81 @@
+/* Unified Animation Styles */
+
+/* Initial loading state - prevents FOUC */
+body.js-loading {
+    visibility: hidden;
+    opacity: 0;
+}
+
+body.animations-ready {
+    transition: opacity 0.4s ease;
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Scroll Progress Indicator */
+.scroll-progress {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-red) 0%, var(--primary-red-light) 25%, var(--accent-orange) 75%, var(--accent-orange-light) 100%);
+    background-size: 200% 100%;
+    z-index: 1001;
+    will-change: width;
+    transform: translateZ(0);
+    animation: gradientFlow 2s ease-in-out infinite;
+}
+
+/* Base States for Animated Elements */
+.stagger-item,
+.reveal-section,
+.hero-title,
+.hero-subtitle,
+.hero-description,
+.hero-actions {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+/* Stagger Animation Initial State */
+.stagger-container .stagger-item {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px) scale(1); /* Reduced from 30px for faster animations */
+    will-change: opacity, transform, visibility;
+    /* We use scale:1 to ensure consistent starting point for hover effects */
+}
+
+/* Reveal Sections Initial State */
+.reveal-section {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px); /* Reduced from 30px for faster animations */
+    will-change: opacity, transform, visibility;
+}
+
+/* Project Card Hover Effects - handled by GSAP in animations_unified.js */
+.project-card {
+    will-change: transform, box-shadow;
+    transform: translateZ(0);
+    /* No transitions here - GSAP handles all animations */
+}
+
+.project-card .project-image img {
+    will-change: transform;
+    transform: translateZ(0);
+    /* No transitions here - GSAP handles all animations */
+}
+
+/* Hero Section Animation States */
+.hero-title,
+.hero-subtitle,
+.hero-description,
+.hero-actions {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px); /* Reduced from 30px for faster animations */
+    will-change: opacity, transform, visibility;
+}

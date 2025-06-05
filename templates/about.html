@@ -1,0 +1,339 @@
+{% extends "base.html" %}
+{% block title %}About - Jiří Pavelka{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1 class="fade-in">About Me</h1>
+        <p class="fade-in">My journey in technology and creative development</p>
+    </div>
+</section>
+
+<section class="about-intro section">
+    <div class="container">
+        <div class="about-content grid grid-2">
+            <div class="about-text slide-in-left">
+                <h2>Hello, I'm Jiří Pavelka</h2>
+                <p>
+                    My story begins at age 12 with dreams of becoming a game developer. I started learning Python 
+                    through Discord bots, then explored Java with Spigot API plugins for Minecraft. This early 
+                    passion provided me with a strong foundation in both software development and systems administration.
+                </p>
+                <p>
+                    At 15, I learned to navigate code efficiently and picked up HTML, CSS, JavaScript, and PHP. 
+                    By 16, I enrolled in an IT-focused high school in Brno, where I deepened my knowledge of 
+                    Windows Server and Linux systems.
+                </p>
+                <p>
+                    I've owned the domain haicome.net and maintained a physical server that runs websites, 
+                    game servers, Docker containers, and home cloud solutions to this day.
+                </p>
+            </div>
+            <div class="about-image slide-in-right">
+                <img src="{{ url_for('static', filename='images/personal.png') }}" alt="Jiří Pavelka">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="skills-detailed section">
+    <div class="container">
+        <h2 class="section-title reveal-section">Skills & Expertise</h2>
+        <div class="skills-categories stagger-container">
+            <div class="skill-category card stagger-item">
+                <h3>💻 Software Development</h3>
+                <ul>
+                    <li>Java - Minecraft plugins, enterprise applications</li>
+                    <li>Python - Discord bots, automation, web development</li>
+                    <li>Web Technologies - HTML, CSS, JavaScript, PHP</li>
+                    <li>Flask - Modern web applications and APIs</li>
+                    <li>MySQL - Database design and optimization</li>
+                    <li>Git - Version control and collaboration</li>
+                </ul>
+            </div>
+            
+            <div class="skill-category card stagger-item">
+                <h3>🔧 System Administration</h3>
+                <ul>
+                    <li>Linux (Ubuntu) - Server management without GUI</li>
+                    <li>Windows Server - Configuration and maintenance</li>
+                    <li>Docker - Containerization and deployment</li>
+                    <li>RAID Configuration - Data redundancy and performance</li>
+                    <li>Network Services - DNS, web servers, databases</li>
+                    <li>Virtualization - Multiple service hosting</li>
+                </ul>
+            </div>
+            
+            <div class="skill-category card stagger-item">
+                <h3>🖥️ Hardware Expertise</h3>
+                <ul>
+                    <li>PC Building - Custom configurations and optimization</li>
+                    <li>Server Hardware - RAID setup and maintenance</li>
+                    <li>Troubleshooting - Complex hardware issues</li>
+                    <li>Performance Optimization - System tuning</li>
+                    <li>Component Selection - Cost-effective solutions</li>
+                    <li>Repair Services - Hardware diagnostics and fixes</li>
+                </ul>
+            </div>
+            
+            <div class="skill-category card stagger-item">
+                <h3>🎬 Creative Skills</h3>
+                <ul>
+                    <li>Video Editing - Content creation and production</li>
+                    <li>YouTube Channel - Content management and growth</li>
+                    <li>Visual Storytelling - Engaging content creation</li>
+                    <li>Creative Software - Professional editing tools</li>
+                    <li>Project Management - Creative workflow optimization</li>
+                    <li>Community Engagement - Audience building</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="education-experience section">
+    <div class="container">
+        <div class="content-grid grid grid-2">
+            <div class="education-section reveal-section">
+                <h2>Education</h2>
+                <div class="education-item">
+                    <h3>IT Specialist Graduate (2025)</h3>
+                    <p><strong>Specialization:</strong> IT Systems and Networking</p>
+                    <p><strong>Location:</strong> Brno, Czech Republic</p>
+                    <p>Comprehensive education in programming, networking, and system administration. 
+                       Gained hands-on experience with Cisco and MikroTik devices, learned multiple 
+                       programming languages including C, C++, C#, WPF, PHP, and Python.</p>
+                </div>
+                
+                <div class="certification-item">
+                    <h3>Self-Directed Learning</h3>
+                    <p>Continuous learning through practical projects, online resources, and 
+                       real-world problem solving. Strong ability to quickly adapt to new 
+                       technologies and frameworks.</p>
+                </div>
+            </div>
+            
+            <div class="experience-section reveal-section">
+                <h2>Notable Projects</h2>
+                <div class="project-highlight">
+                    <h4>Personal Server Infrastructure</h4>
+                    <p>Running and maintaining a physical server with RAID configuration, 
+                       hosting websites, game servers, and home cloud solutions.</p>
+                </div>
+                
+                <div class="project-highlight">
+                    <h4>Domain Management (haicome.net)</h4>
+                    <p>Owner and administrator, handling DNS configuration, web hosting, 
+                       and related services.</p>
+                </div>
+                
+                <div class="project-highlight">
+                    <h4>Minecraft Plugin Development</h4>
+                    <p>Created custom Java plugins using Spigot API to enhance 
+                       gameplay experiences.</p>
+                </div>
+                
+                <div class="project-highlight">
+                    <h4>Discord Bot Development</h4>
+                    <p>Developed Python-based automation bots for community management 
+                       and entertainment.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="personal-info section">
+    <div class="container">
+        <h2 class="section-title reveal-section">Personal Background</h2>
+        <div class="personal-content fade-in">
+            <div class="personal-grid grid grid-3">
+                <div class="personal-item card">
+                    <h3>🇨🇿 Location</h3>
+                    <p>Based in Czech Republic with strong English communication skills 
+                       and openness to remote or on-site opportunities.</p>
+                </div>
+                
+                <div class="personal-item card">
+                    <h3>🧠 Learning Ability</h3>
+                    <p>Fast learner with high IQ test results. Excellent at quickly 
+                       adapting to new technologies and problem-solving approaches.</p>
+                </div>
+                
+                <div class="personal-item card">
+                    <h3>👥 Team Player</h3>
+                    <p>Collaborative team member who also excels at independent work. 
+                       Experience in community management and leadership roles.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="goals-section section">
+    <div class="container">
+        <h2 class="section-title reveal-section">Professional Goals</h2>
+        <div class="goals-content scale-in">
+            <p class="goals-intro">
+                I am actively seeking opportunities to apply my technical skills in a professional environment. 
+                My diverse background in both software development and systems administration makes me adaptable 
+                to various IT roles.
+            </p>
+            <div class="goals-list">
+                <div class="goal-item">
+                    <h4>🎯 Immediate Goals</h4>
+                    <p>Secure a position in software development or IT infrastructure where I can contribute 
+                       immediately while continuing to grow my skills.</p>
+                </div>
+                <div class="goal-item">
+                    <h4>🚀 Long-term Vision</h4>
+                    <p>Become a senior developer or systems architect, leading projects that combine technical 
+                       excellence with creative problem-solving.</p>
+                </div>
+                <div class="goal-item">
+                    <h4>💡 Core Interest</h4>
+                    <p>Particularly interested in positions that allow me to work with modern technologies 
+                       while contributing to meaningful projects that make a real impact.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_head %}
+<style>
+.page-header {
+    background: linear-gradient(135deg, var(--dark-primary) 0%, var(--dark-secondary) 100%);
+    padding: var(--spacing-3xl) 0 var(--spacing-2xl);
+    text-align: center;
+    margin-top: var(--header-height);
+}
+
+.page-header h1 {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.page-header p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+}
+
+.about-image img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 12px;
+    border: 3px solid var(--accent-orange);
+}
+
+.skills-categories {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.skill-category h3 {
+    color: var(--accent-orange);
+    margin-bottom: var(--spacing-md);
+}
+
+.skill-category ul {
+    list-style: none;
+    padding: 0;
+}
+
+.skill-category li {
+    padding: var(--spacing-xs) 0;
+    border-bottom: 1px solid var(--dark-tertiary);
+    color: var(--text-secondary);
+}
+
+.skill-category li:last-child {
+    border-bottom: none;
+}
+
+.content-grid {
+    gap: var(--spacing-2xl);
+}
+
+.education-item,
+.certification-item,
+.project-highlight {
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
+    border-bottom: 1px solid var(--dark-tertiary);
+}
+
+.education-item:last-child,
+.certification-item:last-child,
+.project-highlight:last-child {
+    border-bottom: none;
+}
+
+.education-item h3,
+.project-highlight h4 {
+    color: var(--accent-orange);
+    margin-bottom: var(--spacing-xs);
+}
+
+.personal-grid {
+    margin-top: var(--spacing-xl);
+}
+
+.personal-item {
+    text-align: center;
+}
+
+.personal-item h3 {
+    color: var(--accent-orange);
+    margin-bottom: var(--spacing-md);
+}
+
+.goals-intro {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    color: var(--text-secondary);
+}
+
+.goals-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.goal-item {
+    background: var(--dark-secondary);
+    padding: var(--spacing-lg);
+    border-radius: 12px;
+    border: 1px solid var(--dark-tertiary);
+}
+
+.goal-item h4 {
+    color: var(--accent-orange);
+    margin-bottom: var(--spacing-md);
+}
+
+@media (max-width: 768px) {
+    .page-header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .content-grid,
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+    
+    .about-image {
+        order: -1;
+        text-align: center;
+    }
+    
+    .skills-categories {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+{% endblock %}

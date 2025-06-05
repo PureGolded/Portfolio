@@ -1,0 +1,355 @@
+{% extends "base.html" %}
+{% block title %}Contact - Jiří Pavelka{% endblock %}
+
+{% block extra_head %}
+<style>
+.page-header {
+    background: linear-gradient(135deg, var(--dark-primary) 0%, var(--dark-secondary) 100%);
+    padding: var(--spacing-3xl) 0 var(--spacing-2xl);
+    text-align: center;
+    margin-top: var(--header-height);
+}
+
+.page-header h1 {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.page-header p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+}
+
+.contact-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contact-methods {
+    margin: var(--spacing-xl) 0;
+}
+
+.contact-method {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-md);
+    background: var(--dark-secondary);
+    border-radius: 8px;
+    border: 1px solid var(--dark-tertiary);
+    transition: all var(--transition-fast);
+}
+
+.contact-method:hover {
+    border-color: var(--accent-orange);
+    transform: translateY(-2px);
+}
+
+.contact-icon {
+    font-size: 2rem;
+    margin-right: var(--spacing-md);
+    width: 60px;
+    text-align: center;
+}
+
+.contact-details h4 {
+    color: var(--accent-orange);
+    margin-bottom: var(--spacing-xs);
+    font-weight: var(--font-weight-medium);
+}
+
+.contact-details a {
+    color: var(--text-primary);
+    transition: color var(--transition-fast);
+    text-decoration: none;
+}
+
+.contact-details a:hover {
+    color: var(--accent-orange);
+}
+
+.contact-details span {
+    color: var(--text-secondary);
+}
+
+.contact-availability {
+    margin: var(--spacing-xl) 0;
+    padding: var(--spacing-lg);
+    background: rgba(76, 175, 80, 0.1);
+    border: 1px solid rgba(76, 175, 80, 0.3);
+    border-radius: 8px;
+}
+
+.contact-availability h3 {
+    color: var(--accent-orange);
+    margin-bottom: var(--spacing-md);
+}
+
+.contact-availability strong {
+    color: #4CAF50;
+}
+
+.contact-expertise {
+    margin-top: var(--spacing-xl);
+}
+
+.contact-expertise h3 {
+    color: var(--accent-orange);
+    margin-bottom: var(--spacing-md);
+}
+
+.contact-expertise ul {
+    list-style: none;
+    padding: 0;
+}
+
+.contact-expertise li {
+    padding: var(--spacing-sm) 0;
+    border-bottom: 1px solid var(--dark-tertiary);
+    position: relative;
+    padding-left: var(--spacing-md);
+}
+
+.contact-expertise li:before {
+    content: "▸";
+    color: var(--primary-red);
+    position: absolute;
+    left: 0;
+}
+
+.contact-expertise li:last-child {
+    border-bottom: none;
+}
+
+.preferences-grid {
+    margin-top: var(--spacing-xl);
+}
+
+.preference-card h3 {
+    color: var(--accent-orange);
+    margin-bottom: var(--spacing-md);
+}
+
+.faq-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    margin-bottom: var(--spacing-lg);
+    border: 1px solid var(--dark-tertiary);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.faq-item h4 {
+    color: var(--accent-orange);
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-lg) 0;
+}
+
+.faq-item p {
+    padding: 0 var(--spacing-lg) var(--spacing-md);
+}
+
+@media (max-width: 768px) {
+    .page-header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .contact-method {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .contact-icon {
+        margin-right: 0;
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .preferences-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1 class="fade-in">Let's Connect</h1>
+        <p class="fade-in">Ready to discuss your next project or opportunity</p>
+    </div>
+</section>
+
+<section class="contact-main section">
+    <div class="container">
+        <div class="contact-content slide-in-left">
+            <h2>Get In Touch</h2>
+            <p>
+                I'm always interested in new opportunities, challenging projects, and meaningful collaborations. 
+                Whether you're looking for a developer, need technical consultation, or want to discuss ideas, 
+                I'd love to hear from you.
+            </p>
+            
+            <div class="contact-methods stagger-container">
+                <div class="contact-method stagger-item">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-details">
+                        <h4>Email</h4>
+                        <a href="mailto:jiri@haicome.net">jiri@haicome.net</a>
+                    </div>
+                </div>
+                
+                <div class="contact-method stagger-item">
+                    <div class="contact-icon">🌐</div>
+                    <div class="contact-details">
+                        <h4>Website</h4>
+                        <a href="https://haicome.net" target="_blank" rel="noopener">haicome.net</a>
+                    </div>
+                </div>
+                
+                <div class="contact-method stagger-item">
+                    <div class="contact-icon">📍</div>
+                    <div class="contact-details">
+                        <h4>Location</h4>
+                        <span>Czech Republic</span>
+                    </div>
+                </div>
+                
+                <div class="contact-method stagger-item">
+                    <div class="contact-icon">💼</div>
+                    <div class="contact-details">
+                        <h4>LinkedIn</h4>
+                        <a href="https://linkedin.com/in/jiri-pavelka" target="_blank" rel="noopener">linkedin.com/in/jiri-pavelka</a>
+                    </div>
+                </div>
+                
+                <div class="contact-method stagger-item">
+                    <div class="contact-icon">🐙</div>
+                    <div class="contact-details">
+                        <h4>GitHub</h4>
+                        <a href="https://github.com/PureGolded" target="_blank" rel="noopener">github.com/PureGolded</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-availability reveal-section">
+                <h3>Availability</h3>
+                <p>
+                    I'm currently <strong>available</strong> for new projects and collaborations.
+                    Response time is typically within 24 hours.
+                </p>
+            </div>
+            
+            <div class="contact-expertise reveal-section">
+                <h3>Areas of Expertise</h3>
+                <ul>
+                    <li>Full-Stack Web Development</li>
+                    <li>Java & Python Programming</li>
+                    <li>Flask & Django Applications</li>
+                    <li>Database Design & Optimization</li>
+                    <li>Server Administration & DevOps</li>
+                    <li>Video Editing & Motion Graphics</li>
+                    <li>Technical Consulting</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="collaboration-preferences section">
+    <div class="container">
+        <h2 class="section-title reveal-section">Collaboration Preferences</h2>
+        <div class="preferences-grid grid grid-3 stagger-container">
+            <div class="preference-card card stagger-item">
+                <h3>🏢 Work Environment</h3>
+                <p>Open to both remote and on-site opportunities. Experienced with virtual collaboration tools and async communication.</p>
+            </div>
+            
+            <div class="preference-card card stagger-item">
+                <h3>⏰ Project Timeline</h3>
+                <p>Available for both short-term projects and long-term commitments. Flexible scheduling with clear communication about deadlines.</p>
+            </div>
+            
+            <div class="preference-card card stagger-item">
+                <h3>🤝 Communication Style</h3>
+                <p>Direct, honest communication with regular updates. Prefer detailed project briefs and collaborative planning sessions.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="faq-section section">
+    <div class="container">
+        <h2 class="section-title reveal-section">Frequently Asked Questions</h2>
+        <div class="faq-list stagger-container">
+            <div class="faq-item card stagger-item">
+                <h4>What types of projects are you interested in?</h4>
+                <p>I'm passionate about web development, system administration, automation projects, and creative technical solutions. I particularly enjoy projects that combine multiple technologies or require innovative problem-solving.</p>
+            </div>
+            
+            <div class="faq-item card stagger-item">
+                <h4>Are you available for full-time positions?</h4>
+                <p>Yes! I'm actively seeking full-time opportunities where I can contribute immediately and grow with the team. I'm particularly interested in roles that match my diverse skill set in development and systems administration.</p>
+            </div>
+            
+            <div class="faq-item card stagger-item">
+                <h4>Do you work with international clients?</h4>
+                <p>Absolutely. I have excellent English communication skills and am comfortable working across different time zones. I've experience with remote collaboration and international project management.</p>
+            </div>
+            
+            <div class="faq-item card stagger-item">
+                <h4>What's your typical response time?</h4>
+                <p>I aim to respond to all inquiries within 24 hours. For urgent matters, feel free to mention the urgency in your message, and I'll prioritize accordingly.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Contact page specific animations
+document.addEventListener('DOMContentLoaded', function() {
+    // Enhanced contact method hover effects
+    const contactMethods = document.querySelectorAll('.contact-method');
+    
+    contactMethods.forEach(method => {
+        method.addEventListener('mouseenter', () => {
+            if (typeof gsap !== 'undefined') {
+                gsap.to(method, {
+                    duration: 0.3,
+                    scale: 1.02,
+                    y: -4,
+                    ease: "power2.out"
+                });
+            }
+        });
+        
+        method.addEventListener('mouseleave', () => {
+            if (typeof gsap !== 'undefined') {
+                gsap.to(method, {
+                    duration: 0.3,
+                    scale: 1,
+                    y: 0,
+                    ease: "power2.out"
+                });
+            }
+        });
+    });
+    
+    // Click feedback for contact methods with links
+    contactMethods.forEach(method => {
+        const link = method.querySelector('a');
+        if (link) {
+            method.addEventListener('click', function(e) {
+                if (e.target === method || e.target === method.querySelector('.contact-details')) {
+                    link.click();
+                }
+            });
+        }
+    });
+});
+</script>
+{% endblock %}

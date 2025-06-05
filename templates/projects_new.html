@@ -1,0 +1,380 @@
+{% extends "base.html" %}
+{% block title %}Projects - Jiří Pavelka{% endblock %}
+
+{% block content %}
+<section class="page-header">
+    <div class="container">
+        <h1 class="fade-in">My Projects</h1>
+        <p class="fade-in">A showcase of my technical work and creative endeavors</p>
+    </div>
+</section>
+
+<section class="projects-listing section">
+    <div class="container">
+        {% if projects %}
+        <div class="projects-grid grid grid-2 stagger-container">
+            {% for project in projects %}
+            <div class="project-card card stagger-item hover-lift">
+                {% if project.image_url %}
+                <div class="project-image">
+                    <img src="{{ project.image_url }}" alt="{{ project.title }}" loading="lazy">
+                </div>
+                {% endif %}
+                
+                <div class="project-content">
+                    <h3 class="project-title">{{ project.title }}</h3>
+                    <p class="project-description">{{ project.description }}</p>
+                    
+                    {% if project.technologies %}
+                    <div class="project-tech">
+                        {% for tech in project.technologies.split(',') %}
+                        <span class="tech-tag">{{ tech.strip() }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    
+                    <div class="project-links">
+                        {% if project.github_url %}
+                        <a href="{{ project.github_url }}" target="_blank" class="btn btn-outline" rel="noopener">
+                            <span>View Code</span>
+                        </a>
+                        {% endif %}
+                        
+                        {% if project.live_url %}
+                        <a href="{{ project.live_url }}" target="_blank" class="btn btn-primary" rel="noopener">
+                            <span>Live Demo</span>
+                        </a>
+                        {% endif %}
+                        
+                        {% if not project.github_url and not project.live_url %}
+                        <button class="btn btn-primary" onclick="openProject({{ project.id }})">
+                            <span>View Details</span>
+                        </button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="projects-grid grid grid-2 stagger-container">
+            <!-- Placeholder projects when no database projects exist -->
+            <div class="project-card card stagger-item hover-lift">
+                <div class="project-content">
+                    <h3>Lunox Discord Bot</h3>
+                    <p>A comprehensive Discord bot built with Python, featuring community management tools, entertainment commands, and database integration for persistent data storage.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Discord.py</span>
+                        <span class="tech-tag">SQLite</span>
+                        <span class="tech-tag">Async Programming</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/PureGolded/Lunox" target="_blank" class="btn btn-outline">GitHub</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card card stagger-item hover-lift">
+                <div class="project-content">
+                    <h3>Personal Server Infrastructure</h3>
+                    <p>Complete server setup with RAID configuration, Docker containerization, web hosting, game servers, and home cloud solutions running on haicome.net domain.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Linux Ubuntu</span>
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">RAID Configuration</span>
+                        <span class="tech-tag">Networking</span>
+                        <span class="tech-tag">DNS Management</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card card stagger-item hover-lift">
+                <div class="project-content">
+                    <h3>Minecraft Server Network</h3>
+                    <p>Custom Java plugins developed using Spigot API to enhance multiplayer gameplay. Features include custom game mechanics, player management, and database integration.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Java</span>
+                        <span class="tech-tag">Spigot API</span>
+                        <span class="tech-tag">MySQL</span>
+                        <span class="tech-tag">Plugin Development</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card card stagger-item hover-lift">
+                <div class="project-content">
+                    <h3>Portfolio Website</h3>
+                    <p>This responsive portfolio website built with Flask, featuring modern dark theme design, smooth animations, and content management system.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python Flask</span>
+                        <span class="tech-tag">HTML/CSS/JS</span>
+                        <span class="tech-tag">SQLAlchemy</span>
+                        <span class="tech-tag">Responsive Design</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Project Modal -->
+<div id="project-modal" class="modal">
+    <div class="modal-overlay" onclick="closeProject()"></div>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modal-title"></h2>
+            <button class="modal-close" onclick="closeProject()" aria-label="Close modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div id="modal-image-container" class="modal-image" style="display: none;">
+                <img id="modal-image" src="" alt="">
+            </div>
+            <p id="modal-description"></p>
+            <div id="modal-tech" class="project-tech"></div>
+            <div id="modal-links" class="project-links"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_head %}
+<style>
+.page-header {
+    background: linear-gradient(135deg, var(--dark-primary) 0%, var(--dark-secondary) 100%);
+    padding: var(--spacing-3xl) 0 var(--spacing-2xl);
+    text-align: center;
+    margin-top: var(--header-height);
+}
+
+.page-header h1 {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.page-header p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+}
+
+.projects-grid {
+    gap: var(--spacing-xl);
+}
+
+.project-image {
+    height: 250px;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: var(--spacing-md);
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    margin: var(--spacing-md) 0;
+}
+
+.tech-tag {
+    background: var(--primary-red);
+    color: var(--pure-white);
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: var(--font-weight-medium);
+}
+
+.project-links {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+}
+
+.project-card {
+    transition: all var(--transition-medium);
+    cursor: pointer;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+}
+
+.project-card.featured {
+    border: 2px solid var(--accent-orange);
+}
+
+.project-card.featured::before {
+    content: "Featured";
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    background: var(--accent-orange);
+    color: var(--dark-primary);
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-bold);
+}
+
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .page-header h1 {
+        font-size: 2.5rem;
+    }
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Project modal functionality
+let currentProject = null;
+
+function openProject(projectId) {
+    // Show loading state
+    const modal = document.getElementById('project-modal');
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    
+    // Add loading state to modal content
+    const modalContent = modal.querySelector('.modal-content');
+    modalContent.classList.add('loading-skeleton');
+    
+    fetch(`/api/projects/${projectId}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch project');
+            }
+            return response.json();
+        })
+        .then(project => {
+            currentProject = project;
+            
+            // Remove loading state
+            modalContent.classList.remove('loading-skeleton');
+            
+            // Populate modal
+            document.getElementById('modal-title').textContent = project.title;
+            document.getElementById('modal-description').textContent = project.description;
+            
+            // Handle image
+            const imageContainer = document.getElementById('modal-image-container');
+            const image = document.getElementById('modal-image');
+            if (project.image_url) {
+                image.src = project.image_url;
+                image.alt = project.title;
+                imageContainer.style.display = 'block';
+            } else {
+                imageContainer.style.display = 'none';
+            }
+            
+            // Handle technologies
+            const techContainer = document.getElementById('modal-tech');
+            if (project.technologies && project.technologies.length > 0) {
+                techContainer.innerHTML = project.technologies.map(tech => 
+                    `<span class="tech-tag">${tech.trim()}</span>`
+                ).join('');
+            } else {
+                techContainer.innerHTML = '';
+            }
+            
+            // Handle links
+            const linksContainer = document.getElementById('modal-links');
+            let linksHTML = '';
+            if (project.github_url) {
+                linksHTML += `<a href="${project.github_url}" target="_blank" class="btn btn-outline" rel="noopener">View Code</a>`;
+            }
+            if (project.live_url) {
+                linksHTML += `<a href="${project.live_url}" target="_blank" class="btn btn-primary" rel="noopener">Live Demo</a>`;
+            }
+            linksContainer.innerHTML = linksHTML;
+        })
+        .catch(error => {
+            console.error('Error fetching project:', error);
+            modalContent.classList.remove('loading-skeleton');
+            
+            // Show error message
+            document.getElementById('modal-title').textContent = 'Error';
+            document.getElementById('modal-description').textContent = 'Failed to load project details. Please try again.';
+            document.getElementById('modal-tech').innerHTML = '';
+            document.getElementById('modal-links').innerHTML = '<button class="btn btn-outline" onclick="closeProject()">Close</button>';
+        });
+}
+
+function closeProject() {
+    const modal = document.getElementById('project-modal');
+    const modalContent = modal.querySelector('.modal-content');
+    
+    // Add closing animation
+    modalContent.style.animation = 'modalSlideOut 0.3s ease forwards';
+    
+    setTimeout(() => {
+        modal.style.display = 'none';
+        modalContent.style.animation = '';
+        document.body.style.overflow = 'auto';
+        currentProject = null;
+    }, 300);
+}
+
+// Close modal when pressing Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && currentProject) {
+        closeProject();
+    }
+});
+
+// Add slide out animation to CSS
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes modalSlideOut {
+        from { 
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        to { 
+            opacity: 0;
+            transform: translateY(-50px) scale(0.9);
+        }
+    }
+`;
+document.head.appendChild(style);
+
+// Project Card Interactions
+document.addEventListener('DOMContentLoaded', function() {
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    projectCards.forEach(card => {
+        // Add click handler for project details
+        card.addEventListener('click', function(e) {
+            // Don't trigger if clicking on buttons or links
+            if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.closest('a') || e.target.closest('button')) {
+                return;
+            }
+            
+            console.log('Project card clicked:', card.querySelector('h3').textContent);
+        });
+    });
+    
+    // Animate project cards on load
+    if (typeof gsap !== 'undefined') {
+        gsap.from('.project-card', {
+            duration: 0.6,
+            y: 30,
+            opacity: 0,
+            stagger: 0.1,
+            ease: "power2.out"
+        });
+    }
+});
+</script>
+{% endblock %}
