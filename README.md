@@ -50,11 +50,3 @@ This portfolio website is designed to highlight your work, skills, and backgroun
 - `*.py` — Python files for backend or scripting (if applicable).
 - (Add or adjust as needed based on your actual file structure.)
 
-## Contributing
-
-Contributions, issues, and feature requests are welcome!  
-Feel free to check the [issues page](https://github.com/PureGolded/Portfolio/issues).
-
-## License
-
-[MIT](LICENSE) (or specify your license here)
